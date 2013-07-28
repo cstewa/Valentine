@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sign Up</h1>
+
+
+<p> Paid users can real-time message potential valentines, as well as view other singles with similar interests! </p>
+
+<div class = "paid_form">
+  <h3> As A Paid User </h3>
+
+  <%= form_for(@user) do |f| %>
+
+    <div class="field">
+      <%= f.label "Email (this will be your username):" %> <br/>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :about_me %><br />
+      <%= f.text_area :about_me %>
+    </div>
+
+    <div class="field">
+      <%= f.label :age %><br />
+      <%= f.number_field :age %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Gender (M or F)" %><br />
+      <%= f.text_field :gender %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Location (city, state)" %><br />
+      <%= f.text_field :location %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stripe_id %><br />
+      <%= f.hidden_field :stripe_id, :value => "paid" %>
+    </div>
+
+    </br>
+    <%= form_tag charges_path do %>
+
+      <article>
+        <label class="amount">
+          <span>Paid Subscription: $5.00/month</span>
+        </label>
+      </article>
+
+      <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+        data-key="<%= Rails.configuration.stripe[:publishable_key]%>"
+        data-description="Paid Subscription">
+      </script>
+
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Sign Up!" %>
+    </div>
+
+  <% end %>
+
+</div>
+
+<button type="button" id = "free_user_button">As A Free User</button>
+
+<div id = "free_form">
+
+</div>
+
+<script>
+  $("#free_user_button").on('click', function() {
+    $("#free_form").empty().append("<%= j render :partial => 'free' %>");
+  });
+</script>

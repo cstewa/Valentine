@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @user.first_name%></h1>
+
+<ul>
+  <li><%= @user.about_me %></li>
+  <li><%= @user.gender %>, <%= current_user.age %> years old.</li>
+  <li>From: <%= @user.location %></li>
+</ul>
+
+<% if @user == current_user %>
+  <%= link_to "Edit Profile", edit_user_url(current_user.id) %>
+<% end %>
+
+<% if @user == current_user && current_user.is_paid %>
+  <%= link_to "Match Me!", match_url %>
+<% end %>
+
+<%= link_to "All Valentines", users_url %>
+
+
+</br>
+</br>
+When you click a name, past convo pops up, and can real-time message.
+</br>
+</br>
+Currently online:
+</br>
+<% current_users_list.each do |first_name| %>
+  <div class = "current-user-name"> <%= link_to first_name %> </div>
+<% end %>
+
+<div id = "hidden_email_list">
+  <%= current_user_emails_list %>
+</div>

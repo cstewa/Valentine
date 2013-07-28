@@ -1,0 +1,11 @@
+<% @users.each do |user| %>
+
+<ul>
+  <li><%= user.first_name %></li>
+  <li><%= user.about_me %></li>
+  <li><%= user.gender %>, <%= user.age %> years old.</li>
+  <li>From: <%= user.location %></li>
+</ul>
+
+<% end %>
+
