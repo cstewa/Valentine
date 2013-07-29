@@ -32,10 +32,26 @@ ul {
   width: 500px;
 }
 
-#hidden_email_list {
+#hidden_id_list, .name-index, #hidden_user_id, #hidden_photo_list {
   display: none;
 }
 
-.current-user-name a {
-  text-decoration: none;
+
+.picture {
+  width: 300px;
+  height: 200px;
 }
+
+.picture > img{
+  width: 300px;
+  height: 200px;
+}
+
+.photo-index{
+  display: inline-block;
+}
+
+#photos{
+  margin: 10px;
+}
+

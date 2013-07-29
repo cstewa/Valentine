@@ -7,10 +7,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_users_list
 
-  def current_user_emails_list
-    current_users.map {|u| u.email}.join(", ")
+  def current_user_id_list
+    current_users.map {|u| u.id}
   end
 
-  helper_method :current_user_emails_list
+  helper_method :current_user_id_list
 
 end

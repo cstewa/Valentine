@@ -1,7 +1,7 @@
 <% @users.each do |user| %>
 
 <ul>
-  <li><%= user.first_name %></li>
+  <li><%= link_to user.first_name, user_url(user.id) %></li>
   <li><%= user.about_me %></li>
   <li><%= user.gender %>, <%= user.age %> years old.</li>
   <li>From: <%= user.location %></li>

@@ -14,6 +14,9 @@ gem 'meta_request'
 gem 'quiet_assets'
 gem 'sunspot_rails'
 
+gem 'webrick', '~> 1.3.1'
+
+
 gem "fog"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "carrierwave"

@@ -25,6 +25,16 @@
     <%= f.text_field :location %>
   </div>
 
+  <div id = "user-pics">
+    <% @user.photos.each do |photo| %>
+      <div class = "user-pic">
+        <input type="checkbox" name="photo_id" value="<%= photo.id %>">Make Profile<br>
+        <%= image_tag photo.picture %><br>
+      </div>
+    <% end %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit "Save" %>
   </div>

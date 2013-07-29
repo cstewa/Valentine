@@ -11,14 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130728000837) do
-
-  create_table "albums", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130729022617) do
 
   create_table "messages", :force => true do |t|
     t.text     "message"
@@ -29,11 +22,12 @@ ActiveRecord::Schema.define(:version => 20130728000837) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "album_id"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "picture"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "is_profile", :default => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,12 +1,15 @@
 Valentine::Application.routes.draw do
 
- resources :charges
+  resources :photos
+
+  resources :charges
 
   get "matches" => "users#match", :as => "match"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   post "login" => "sessions#create"
   get "signup" => "users#new", :as => "signup"
+  get "get_picture/:id/:index" => 'users#find_picture'
 
   resources :users
 

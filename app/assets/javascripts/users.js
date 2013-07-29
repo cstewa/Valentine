@@ -1,5 +1,44 @@
 $(document).ready(function(){
 
+  $('#hidden-pictures').append($('.picture'));
 
+  $('.photo-index').on('click', function() {
+    var index = $(this).attr('data');
+    $.ajax({
+      type: "GET",
+      url: "/get_picture/" + $('#hidden_user_id').val() + "/" + index,
+      dataType: "json",
+    }).done(show_picture);
+  });
+
+  var show_picture = function(photo) {
+    $('#shown-picture').attr('src', photo.picture.url);
+  };
+
+  $('#play-photos').on('click', function() {
+    // $('.hidden_user_photos').each(function( index ) {
+    //   $('#shown-picture-div').append('<img src=' + $(this).attr('value') + '>').fadeIn(2000);
+    // });
+    var speed = 2000;
+    var timer = setInterval(replacePhoto, speed);
+    var photos = $('.hidden_user_photo');
+    var length = photos.length;
+    var index = 0
+    function replacePhoto() {
+      photos.eq(index).appendTo('#shown-picture-div').fadeIn(3000).fadeOut(2000).delay(1000);
+      index ++;
+      if (index >= length) {
+        clearInterval(timer);
+      };
+    };
+
+  });
+
+  var play_photos = function(elem, index, array) {
+    $('#shown-picture-div').append('<img src=' + elem + '>').fadeIn(3000).fadeOut(3000);
+    $('#shown-picture-div').append('<img src=' + elem + '>').fadeIn(3000).fadeOut(3000);
+    $('#shown-picture-div').append('<img src=' + elem + '>').fadeIn(3000).fadeOut(3000);
+  };
 
 });
+

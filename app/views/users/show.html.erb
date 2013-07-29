@@ -2,34 +2,85 @@
 
 <h1><%= @user.first_name%></h1>
 
+<% if !@user.photos.empty? && !@user.photos.where(:is_profile => true).empty? %>
+  <%= image_tag @user.photos.where(:is_profile => true)[0].picture %>
+<% end %>
+
 <ul>
   <li><%= @user.about_me %></li>
   <li><%= @user.gender %>, <%= current_user.age %> years old.</li>
   <li>From: <%= @user.location %></li>
 </ul>
 
-<% if @user == current_user %>
-  <%= link_to "Edit Profile", edit_user_url(current_user.id) %>
-<% end %>
-
 <% if @user == current_user && current_user.is_paid %>
   <%= link_to "Match Me!", match_url %>
 <% end %>
 
+
+<div id = "photos" >
+  Photos of <%= @user.first_name %>:
+  <% @user.photos.each_with_index do |photo, index| %>
+    <p class = "photo-index" data = "<%= index %>">
+      <%= index %>
+    </p>
+  <% end %>
+  </br>
+  <button id = "play-photos">Play Photos </button>
+</div>
+
+<div id = "shown-picture-div"> </div>
+<img id = "shown-picture" src = "">
+
+
+<% if @user == current_user %>
+  <%= link_to "Edit Profile", edit_user_url(current_user.id) %>
+  <% if @user.photos.length < 4 %>
+
+    <div id = "post-photos"> Post some photos of yourself so everyone can see how hot you are! </div>
+    <%= form_for(@photo, :html_options => {:multipart => true}) do |f| %>
+      <%= f.label "Caption:" %>
+      <%= f.text_field :name %>
+
+      <%= f.file_field :picture %>
+      <%= f.submit "Add this photo of your HOT self." %>
+
+    <% end %>
+  <% end %>
+<% end %>
+
+</br>
+</br>
+
+<% if current_user.is_paid %>
+  When you click a name, past convo pops up, and can real-time message.
+  </br>
+  Currently online:
+  </br>
+
+  <% current_users_list.each_with_index do |first_name, index| %>
+    <div class = "current-user-name">
+      <%= first_name %>
+      <span class = "name-index"> <%= index %> </span>
+    </div>
+  <% end %>
+
+<% end %>
+
+
+<div id = "hidden_id_list">
+  <%= current_user_id_list %>
+</div>
+
+<input id = "hidden_user_id" type= "hidden" value = "<%= @user.id %>">
+
+<div id = "hidden_photo_list">
+  <% @user.photos.each do |photo| %>
+    <img class = "hidden_user_photo" src= "<%= photo.picture %>">
+  <% end %>
+</div>
+
+
 <%= link_to "All Valentines", users_url %>
 
 
-</br>
-</br>
-When you click a name, past convo pops up, and can real-time message.
-</br>
-</br>
-Currently online:
-</br>
-<% current_users_list.each do |first_name| %>
-  <div class = "current-user-name"> <%= link_to first_name %> </div>
-<% end %>
 
-<div id = "hidden_email_list">
-  <%= current_user_emails_list %>
-</div>

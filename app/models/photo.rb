@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :album_id, :name, :picture
+  attr_accessible :user_id, :name, :picture, :is_profile
 
   belongs_to :user
 
-  mount_uploader :picture, ImageUploader
+  mount_uploader :picture, PhotoUploader
 end

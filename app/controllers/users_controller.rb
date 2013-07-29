@@ -12,8 +12,16 @@ class UsersController < ApplicationController
     @users = User.where(:gender => gender)
   end
 
+  def find_picture
+    user = User.find(params[:id])
+    index = params[:index]
+    index = index.to_i
+    render json: user.photos[index].picture
+  end
+
   def show
     @user = User.find(params[:id])
+    @photo = Photo.new
   end
 
   def create
@@ -41,6 +49,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        @user.photos.each do |photo|
+          photo.update_attributes(:is_profile => false)
+        end
+        @user.photos.find(params[:photo_id]).update_attributes(:is_profile => true)
         format.html { redirect_to @user, notice: 'Just saved your new profile :)' }
       else
         format.html { render action: "edit" }

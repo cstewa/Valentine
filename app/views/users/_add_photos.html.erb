@@ -1,0 +1,7 @@
+<%= form_for(@photo, :html_options => {:multipart => true}) do |f| %>
+  <%= f.label "Caption:" %>
+  <%= f.text_field :name %>
+
+  <%= f.file_field :picture %>
+  <%= f.submit "Add this photo of your HOT self." %>
+<% end %>
