@@ -9,7 +9,13 @@ class UsersController < ApplicationController
         gender = "M" || "m"
       end
     end
-    @users = User.where(:gender => gender)
+    query = params[:query]
+    if query.blank?
+      @users = User.where(:gender => gender)
+    else
+      search = User.search { fulltext query }
+      @users = search.results
+    end
   end
 
   def find_picture

@@ -13,6 +13,11 @@ gem 'better_errors'
 gem 'meta_request'
 gem 'quiet_assets'
 gem 'sunspot_rails'
+gem 'capistrano'
+
+group :development do
+  gem 'sunspot_solr'
+end
 
 gem 'webrick', '~> 1.3.1'
 

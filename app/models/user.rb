@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
 
+  searchable do
+    text :about_me, :first_name, :location, :age
+  end
 
 def customer_emails
   customer_emails = []

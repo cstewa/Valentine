@@ -4,6 +4,7 @@ Valentine::Application.routes.draw do
 
   resources :charges
 
+  post "search" => "users#index", :as => "search"
   get "matches" => "users#match", :as => "match"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

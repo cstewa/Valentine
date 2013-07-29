@@ -36,8 +36,13 @@ ul {
   display: none;
 }
 
+#shown-picture-div {
+  width: 310px;
+  height: 210px;
+  overflow: hidden;
+}
 
-.picture {
+.picture, .hidden_user_photo {
   width: 300px;
   height: 200px;
 }
